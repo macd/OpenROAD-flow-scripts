@@ -10,7 +10,7 @@
 # DESIGN_CONFIG=./designs/nangate45/dynamic_node/config.mk
 # DESIGN_CONFIG=./designs/nangate45/gcd/config.mk
 # DESIGN_CONFIG=./designs/nangate45/ibex/config.mk
-# DESIGN_CONFIG=./designs/nangate45/jpeg/config.mk
+DESIGN_CONFIG=./designs/nangate45/jpeg/config.mk
 # DESIGN_CONFIG=./designs/nangate45/swerv/config.mk
 # DESIGN_CONFIG=./designs/nangate45/swerv_wrapper/config.mk
 # DESIGN_CONFIG=./designs/nangate45/tiny-tests/config.mk
@@ -49,10 +49,10 @@
 # DESIGN_CONFIG=./designs/sky130/gcd/config.mk
 # DESIGN_CONFIG=./designs/sky130/ibex/config.mk
 # DESIGN_CONFIG=./designs/sky130/aes/config.mk
-# DESIGN_CONFIG=./designs/sky130/jpeg/config.mk
+#DESIGN_CONFIG=./designs/sky130/jpeg/config.mk
 
 # Default design
-DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+# DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
 
 # # Global override Floorplan
 # export CORE_UTILIZATION := 30

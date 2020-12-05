@@ -48,6 +48,7 @@ if {[info exist ::env(BLACKBOX_MAP_TCL)]} {
 
 # generic synthesis
 synth  -top $::env(DESIGN_NAME) -flatten
+#source scripts/expt_yosys.tcl
 
 # Optimize the design
 opt -purge
@@ -81,7 +82,7 @@ if {[info exist ::env(ABC_CLOCK_PERIOD_IN_PS)]} {
 setundef -zero
 
 # Splitting nets resolves unwanted compound assign statements in netlist (assign {..} = {..})
-splitnets
+#splitnets  no longer needed by using "write_verilog -simple-lhs ..."
 
 # remove unused cells and wires
 opt_clean -purge
@@ -99,4 +100,4 @@ tee -o $::env(REPORTS_DIR)/synth_check.txt check
 tee -o $::env(REPORTS_DIR)/synth_stat.txt stat -liberty $::env(OBJECTS_DIR)/merged.lib
 
 # write synthesized design
-write_verilog -noattr -noexpr -nohex -nodec $::env(RESULTS_DIR)/1_1_yosys.v
+write_verilog -simple-lhs -noattr -noexpr -nohex -nodec $::env(RESULTS_DIR)/1_1_yosys.v
