@@ -47,8 +47,8 @@ if {[info exist ::env(BLACKBOX_MAP_TCL)]} {
 
 
 # generic synthesis
-synth  -top $::env(DESIGN_NAME) -flatten
-#source scripts/expt_yosys.tcl
+#synth  -top $::env(DESIGN_NAME) -flatten
+source scripts/expt_yosys.tcl
 
 # Optimize the design
 opt -purge
@@ -71,11 +71,13 @@ close $constr
 if {[info exist ::env(ABC_CLOCK_PERIOD_IN_PS)]} {
   abc -D [expr $::env(ABC_CLOCK_PERIOD_IN_PS)] \
       -liberty $::env(OBJECTS_DIR)/merged.lib \
-      -constr $::env(OBJECTS_DIR)/abc.constr
+      -constr $::env(OBJECTS_DIR)/abc.constr \
+      -script scripts/expt_abc.script
 } else {
   puts "WARNING: No clock period constraints detected in design"
   abc -liberty $::env(OBJECTS_DIR)/merged.lib \
-      -constr $::env(OBJECTS_DIR)/abc.constr
+      -constr $::env(OBJECTS_DIR)/abc.constr \
+      -script scripts/expt_abc.script
 }
 
 # replace undef values with defined constants
